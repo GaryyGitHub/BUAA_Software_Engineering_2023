@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bilimili-admin
+  labels:
+    app: admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+        - name: admin
+          image: registry.cn-beijing.aliyuncs.com/bilimili/bilimili:admin_latest
+          # image: bilimili-admin:latest
+          ports:
+            - containerPort: 8788
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bilimili-admin
+spec:
+  selector:
+    app: admin
+  ports:
+    - protocol: TCP
+      port: 8788
+      targetPort: 8788
+      nodePort: 30088 # 节点上暴露的端口，可以指定或让K8S自动分配
+  type: NodePort # 更改为 NodePort 类型，以便外部访问

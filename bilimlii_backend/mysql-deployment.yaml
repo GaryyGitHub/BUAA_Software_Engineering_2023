@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bilimili-mysql
+  labels:
+    app: bilimili-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bilimili-mysql
+  template:
+    metadata:
+      labels:
+        app: bilimili-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          imagePullPolicy: Always
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "BUAA13Soft"
+          - name: MYSQL_DATABASE
+            value: "bilimili"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+          - name: mysql-storage
+            mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bilimili-mysql
+spec:
+  selector:
+    app: bilimili-mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

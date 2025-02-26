@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bilimili-redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest  # 使用官方 Redis 镜像
+          # image: registry.cn-beijing.aliyuncs.com/bilimili/bilimili:redis_latest
+          ports:
+            - containerPort: 6379
+          env:
+          - name: REDIS_PASSWORD
+            value: "BUAA13Soft"
+          command: ["redis-server", "--requirepass", "$(REDIS_PASSWORD)"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bilimili-redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP

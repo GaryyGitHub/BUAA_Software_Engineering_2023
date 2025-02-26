@@ -1,0 +1,148 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #ccc;
+}
+
+ address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
+}
+
+.index *, .index *:before, .index *:after {
+    box-sizing: border-box;
+}
+
+.index * {
+    margin: 0;
+    padding: 0;
+}
+
+.flex-fill {
+    flex: 1 1 auto !important;
+}
+
+.v-container {
+    width: 100%;
+    padding: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 960px) {
+    .v-container {
+        max-width: 900px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .v-container {
+        max-width: 1200px;
+    }
+}
+
+.v-card {
+    background-color: #fff;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    transition-property: box-shadow,opacity,background;
+    z-index: 0;
+    border-radius: 15px;
+}
+
+.v-table {
+    position: relative;
+    line-height: 1.5;
+    height: 100%;
+    background-color: #fff;
+    color: var(--text2);
+}
+
+.v-table__wrapper {
+    overflow: auto;
+}
+
+.v-table .v-table__wrapper table {
+    width: 95%;
+    border-spacing: 0;
+    margin-left: 20px;
+}
+
+
+.v-table .v-table__wrapper table thead {
+    z-index: 500;
+}
+
+.v-table .v-table__wrapper table thead tr th {
+    background: #fff;
+    z-index: 1;
+    border-bottom: 0;
+    position: sticky;
+    top: 0;
+    height: 56px;
+    font-weight: 700;
+    text-align: start;
+    padding: 0 16px;
+    color: rgba(0,0,0,0.6);
+    white-space: nowrap;
+}
+
+.v-table table tbody tr {
+    font-size: 13px ;
+    border: 5px solid transparent;
+    transition: box-shadow .3s,transform .3s, border-color .3s;
+    border-radius: 15px;
+}
+
+.v-table table tbody tr:not(.v-data-table__selected):hover {
+    box-shadow: 0 2px 20px -2px rgba(35, 49, 126, 0.4);
+    border-color: #ffd024;
+    transform: translateY(-1px);
+}
+
+.v-table .v-table__wrapper table tbody tr td {
+    height: 100px;
+}
+
+.v-table .v-table__wrapper table tbody tr td, .v-table .v-table__wrapper table tbody tr th, .v-table .v-table__wrapper table thead tr td, .v-table .v-table__wrapper table thead tr th, .v-table .v-table__wrapper table tfoot tr td, .v-table .v-table__wrapper table tfoot tr th {
+    padding: 0 16px;
+}
+
+.v-table-page {
+    padding-top: 45px;
+    height: 40px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.v-text {
+    word-break: break-all;
+    white-space: pre-line;
+}
+
+.v-url {
+    cursor: pointer;
+    color: var(--brand_blue);
+    text-decoration: none;
+}
+
+.v-url:hover {
+    color: var(--Lb6);
+}

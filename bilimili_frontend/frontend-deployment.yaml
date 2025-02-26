@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bilimili-frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: registry.cn-beijing.aliyuncs.com/bilimili/bilimili:frontend_latest
+          # image: bilimili-frontend:latest
+          ports:
+            - containerPort: 8787
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bilimili-frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 8787
+      targetPort: 8787
+      nodePort: 30087 # 节点上暴露的端口，可以指定或让K8S自动分配
+  type: NodePort # 更改为 NodePort 类型，以便外部访问
